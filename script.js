@@ -8,9 +8,10 @@ function Gameboard(){
     const getBoard = () => board;
 
     const markCell = (cell ,player) => {
-        if(board[cell - 1].getValue() !== 0) return;
+        if(board[cell - 1].getValue() !== 0) return false;
 
         board[cell - 1].mark(player);
+        return true;
     }
 
     const printBoard = ()=>{
@@ -18,6 +19,7 @@ function Gameboard(){
             console.log(board.map((cell)=> cell.getValue()).slice(i, i + 3).join(" "));
         }
     }
+
 
     const playerWon = (player)=> {
         const winningCombinations = [
@@ -48,7 +50,15 @@ function Gameboard(){
         return false;
     }
 
-    return {getBoard, markCell, printBoard, playerWon};
+    const isTie = () => {
+        for(const cell of board){
+            if(cell.getValue() === 0)return false;
+        }
+
+        return true;
+    }
+
+    return {getBoard, markCell, printBoard, playerWon, isTie};
 }
 
 function Cell(){
@@ -84,6 +94,8 @@ function GameController(
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
     };
 
+
+
     const getActivePlayer = () => activePlayer;
 
     const printNewRound = () => {
@@ -93,14 +105,25 @@ function GameController(
 
     const playRound = (column) => {
         console.log(`checking column ${column} for ${getActivePlayer().name}`);
-        board.markCell(column,getActivePlayer().token);
+        const mark = board.markCell(column,getActivePlayer().token);
 
         if(board.playerWon(getActivePlayer())){
             console.log(`${getActivePlayer().name} has won the game`);
-            board.printBoard();git 
+            board.printBoard();
+            return "won";
+
+        }else if(board.isTie()){
+            console.log("The game is a tie");
+            board.printBoard();
+            return "tie";
         }else{
-            switchPlayerTurn();
-            printNewRound();  
+            if(mark === true){
+                switchPlayerTurn();
+            }
+                printNewRound();  
+                return "continue";
+
+
         }
 
 
@@ -114,5 +137,64 @@ function GameController(
 
 }
 
-const game = GameController();
+function displayController(){
+    const game = GameController();
+    let isGameOver = false;
+
+    const activePlayerDiv = document.querySelector(".activePlayer");
+
+    const printNewRound = () => {
+        activePlayerDiv.textContent =`${game.getActivePlayer().name}'s Turn` ;
+        printBoard();
+    }
+
+
+
+    const printBoard = ()=>{
+        const displayBoard = document.querySelector(".game-container");
+        const board = game.getBoard();
+        for(let i = 0; i< board.length;i++){
+            const box = displayBoard.querySelector(`#b${i}`);
+            if(board[i].getValue() === "X"){
+                box.innerHTML = "X";
+            }else if (board[i].getValue() === "O"){
+                box.innerHTML = "O";
+            }
+        }
+    }
+
+    const addMark = ()=>{
+        const boxes = document.querySelectorAll(".box");
+        for(let i = 0;i<boxes.length;i++){
+            boxes[i].addEventListener('click', (event)=>{
+                if(isGameOver == true)return
+                const result = game.playRound(i+1);
+                if(result === 'won'){
+                    isGameOver = true;
+                    printBoard();
+                    activePlayerDiv.textContent = `${game.getActivePlayer().name} Has Won` ;
+                }else if(result === "tie"){
+                    isGameOver = true;
+                    printBoard()
+                    activePlayerDiv.textContent = `The Game is a Tie` ;
+                }else if (result ==="continue"){
+                    printNewRound();
+                }
+                
+            })
+        }
+    }
+
+    addMark();
+    printNewRound();
+    
+    return {printNewRound,printBoard,playRound : game.playRound}
+}
+
+const game = displayController();
+
+game.printBoard();
+
+
+
 

@@ -1,0 +1,16 @@
+.game-container{
+    display:flex;
+    flex-wrap: wrap;
+    gap:10px;
+    width:320px;
+    
+
+}
+
+.box{
+    border: 2px solid black;
+    box-sizing: border-box;
+    width:100px;
+    height:100px;
+    
+}
