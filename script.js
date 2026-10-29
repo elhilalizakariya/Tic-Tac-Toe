@@ -138,10 +138,39 @@ function GameController(
 }
 
 function displayController(){
-    const game = GameController();
+    let game;
     let isGameOver = false;
 
     const activePlayerDiv = document.querySelector(".activePlayer");
+
+    const initSetup = () => {
+        const startButton = document.querySelector(".start"); 
+        const restartButton = document.querySelector(".restart");
+        let firstPlayer;
+        let secondPlayer;
+        startButton.addEventListener("click",(event)=>{
+            firstPlayer = document.querySelector("#player1").value;
+            secondPlayer = document.querySelector("#player2").value;
+            const gameDiv = document.querySelector('.game');
+            const setupDiv = document.querySelector('.setup');
+            game = GameController(firstPlayer,secondPlayer);
+            printNewRound();
+            gameDiv.classList.remove('hidden');
+            setupDiv.classList.add('hidden');
+
+
+        })
+        restartButton.addEventListener("click", (event)=>{
+            [firstPlayer, secondPlayer] = [secondPlayer, firstPlayer];
+            game = GameController(firstPlayer,secondPlayer);
+            isGameOver = false;
+            printNewRound();
+        })
+    
+
+    }
+
+
 
     const printNewRound = () => {
         activePlayerDiv.textContent =`${game.getActivePlayer().name}'s Turn` ;
@@ -159,6 +188,8 @@ function displayController(){
                 box.innerHTML = "X";
             }else if (board[i].getValue() === "O"){
                 box.innerHTML = "O";
+            }else if (board[i].getValue() === 0){
+                box.innerHTML = "";
             }
         }
     }
@@ -186,14 +217,15 @@ function displayController(){
     }
 
     addMark();
-    printNewRound();
+    initSetup();
+
     
-    return {printNewRound,printBoard,playRound : game.playRound}
+    return {printNewRound,printBoard,}
 }
 
 const game = displayController();
 
-game.printBoard();
+
 
 
 

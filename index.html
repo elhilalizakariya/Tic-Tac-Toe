@@ -8,19 +8,33 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <div class="setup">
 
-    <h2 class="activePlayer"></h2>
-    <div class="game-container">
-        <button class="box" id="b0"></button>
-        <button class="box" id="b1"></button>
-        <button class="box" id="b2"></button>
-        <button class="box" id="b3"></button>
-        <button class="box" id="b4"></button>
-        <button class="box" id="b5"></button>
-        <button class="box" id="b6"></button>
-        <button class="box" id="b7"></button>
-        <button class="box" id="b8"></button>
+        <div class="title">TIC-TAC-TOE</div>
+        <label for="player1">First player's Name:</label>
+        <input type="text" id="player1" name="player1">
+        <label for="player2">Second player's Name:</label>
+        <input type="text" id="player2" name="player2">
+        <button class="start">Start Game</button>
+        
     </div>
+
+    <div class="game hidden">
+        <h2 class="activePlayer"></h2>
+        <div class="game-container">
+            <button class="box" id="b0"></button>
+            <button class="box" id="b1"></button>
+            <button class="box" id="b2"></button>
+            <button class="box" id="b3"></button>
+            <button class="box" id="b4"></button>
+            <button class="box" id="b5"></button>
+            <button class="box" id="b6"></button>
+            <button class="box" id="b7"></button>
+            <button class="box" id="b8"></button>
+        </div>
+        <button class="restart">Restart</button>
+    </div>
+
 
 </body>
 </html>
