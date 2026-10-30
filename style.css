@@ -1,21 +1,18 @@
-@font-face {
-  font-family: 'DOUGHN__';
-  src: url('https://static.wfonts.com/data/2014/09/28/douglas-hand/DOUGHN__.woff') format('woff');
-  font-display: swap;
+:root{
+    --myfont: 'Permanent Marker', cursive;
 }
 
-#preview-render {
-  font-family: 'DOUGHN__', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 54px;
-  color: #373c44;
-}
 
 
 body {
-    font-family:"DOUGHN__";
+    font-family: var(--myfont);
     background-color: #fff;
     background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px), linear-gradient(#eee .1em, transparent .1em);
     background-size: 100% 1.2em;
+    display:flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 
 .game-container{
@@ -40,3 +37,62 @@ body {
 .hidden{
     display:none;
 }
+
+.setup{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:50px;
+
+}
+
+.inputs{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    gap:80px;
+}
+
+.input{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+}
+
+input{
+    border-width: 10px;
+    background-color: transparent;
+    border:rgba(0, 255, 13, 0.507) solid 6px;
+    font-family: --var(--myfont);
+    font-size: 1.5em;
+    height:30px;
+    width:155px;
+    padding:5px;
+}
+
+label{
+    font-size:1.8em;
+    color:rgba(17, 0, 255, 0.507)
+}
+
+.title{
+    font-size: 3em;
+    color: rgba(255, 0, 43, 0.507)
+}
+
+.start{
+    height:50px;
+    width:150px;
+    font-family: --var(--myfont);
+    font-size: 3em;
+    color: rgba(17, 0, 255, 0.507);
+    background-color: transparent;
+    border:none;
+}
+.start:hover{
+    color: rgba(17, 0, 255, 0.844);
+    cursor: pointer;
+    text-shadow: 2px 2px 4px yellow;
+}
+

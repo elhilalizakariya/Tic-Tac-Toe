@@ -5,17 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe</title>
     <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
 </head>
 <body>
     <div class="setup">
 
         <div class="title">TIC-TAC-TOE</div>
-        <label for="player1">First player's Name:</label>
-        <input type="text" id="player1" name="player1">
-        <label for="player2">Second player's Name:</label>
-        <input type="text" id="player2" name="player2">
-        <button class="start">Start Game</button>
+
+        <div class="inputs">
+
+            <div class="input">
+                <label for="player1">Player X:</label>
+                <input type="text" id="player1" name="player1" required>
+            </div>
+
+            <div class="input">
+                <label for="player2">Player O:</label>
+                <input type="text" id="player2" name="player2" required>
+            </div>
+
+        </div>
+
+
+        <button class="start">Play</button>
         
     </div>
 
