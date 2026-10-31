@@ -157,6 +157,7 @@ function displayController(){
             printNewRound();
             gameDiv.classList.remove('hidden');
             setupDiv.classList.add('hidden');
+  
 
 
         })

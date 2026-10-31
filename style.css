@@ -1,5 +1,6 @@
 :root{
     --myfont: 'Permanent Marker', cursive;
+    --myborder: 8px solid rgba(255, 0, 157, 0.507);
 }
 
 
@@ -18,32 +19,25 @@ body {
 .game-container{
     display:flex;
     flex-wrap: wrap;
-    gap:10px;
-    width:320px;
+    width:390px;
+
     
 
 }
 
-.box{
-    border: 2px solid black;
-    box-sizing: border-box;
-    width:100px;
-    height:100px;
-    
-}
 
 
 
-.hidden{
-    display:none;
-}
+
+
 
 .setup{
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:50px;
-
+    rotate:350deg;
+    margin-top: -100px;
 }
 
 .inputs{
@@ -71,6 +65,10 @@ input{
     padding:5px;
 }
 
+input:focus{
+    outline:none;
+}
+
 label{
     font-size:1.8em;
     color:rgba(17, 0, 255, 0.507)
@@ -94,5 +92,78 @@ label{
     color: rgba(17, 0, 255, 0.844);
     cursor: pointer;
     text-shadow: 2px 2px 4px yellow;
+}
+
+.game{
+    display:flex;
+    flex-direction: column;
+    gap:30px;
+    rotate:350deg;
+    align-items:center;
+    margin-top:-100px;
+}
+
+.activePlayer{
+    font-size:3em;
+}
+
+.restart{
+    height:50px;
+    width:150px;
+    font-family: --var(--myfont);
+    font-size: 3em;
+    color: rgba(17, 0, 255, 0.507);
+    background-color: transparent;
+    border:none;
+}
+
+.restart:hover{
+    color: rgba(17, 0, 255, 0.794);
+    cursor: pointer;
+    text-shadow: 2px 2px 4px yellow;
+}
+
+.box{
+    border:none;
+    width:130px;
+    height:130px;
+    box-sizing: border-box;
+    background-color: transparent;
+    padding:0;
+    margin:0;
+    font-family: var(--myfont);
+    font-size:5em;
+    color: rgba(255, 0, 43, 0.507);
+    
+}
+
+
+#b0,#b3{
+    border-bottom: var(--myborder);
+    border-right: var(--myborder);
+}
+
+#b4{
+    
+    border-bottom:var(--myborder);
+}
+#b1{
+    border-bottom:var(--myborder);
+}
+
+#b2,#b5{
+    border-bottom:var(--myborder);
+    border-left:var(--myborder);
+}
+
+#b6{
+    border-right: var(--myborder);
+}
+#b8{
+    border-left:var(--myborder);
+}
+
+.hidden{
+    display:none;
 }
 
