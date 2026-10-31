@@ -157,7 +157,7 @@ function displayController(){
             printNewRound();
             gameDiv.classList.remove('hidden');
             setupDiv.classList.add('hidden');
-  
+            
 
 
         })
@@ -204,11 +204,11 @@ function displayController(){
                 if(result === 'won'){
                     isGameOver = true;
                     printBoard();
-                    activePlayerDiv.textContent = `${game.getActivePlayer().name} Has Won` ;
+                    activePlayerDiv.textContent = `${game.getActivePlayer().name} Has Won 🏆` ;
                 }else if(result === "tie"){
                     isGameOver = true;
                     printBoard()
-                    activePlayerDiv.textContent = `The Game is a Tie` ;
+                    activePlayerDiv.textContent = `The Game is a Tie 👔` ;
                 }else if (result ==="continue"){
                     printNewRound();
                 }
